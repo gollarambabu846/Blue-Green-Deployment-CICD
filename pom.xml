@@ -6,7 +6,8 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.3.3</version>
-        <relativePath/> </parent>
+        <relativePath/> 
+    </parent>
     <groupId>com.example</groupId>
     <artifactId>bankapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -14,7 +15,11 @@
     <description>Banking Web Application</description>
 
     <properties>
-        <java.version>17</java.version>
+        <!-- Upgraded to match your Jenkins runtime server environment -->
+        <java.version>21</java.version>
+        <!-- Standardized SonarQube properties for automated Maven execution -->
+        <sonar.projectKey>multitier</sonar.projectKey>
+        <sonar.projectName>multitier</sonar.projectName>
     </properties>
 
     <dependencies>
@@ -27,7 +32,7 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
+            <groupId>org.springframework.boot-starter-thymeleaf</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
@@ -63,10 +68,37 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <!-- SonarQube Maven Plugin for clean code analytics tracking -->
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>3.10.0.2594</version>
+            </plugin>
+            <!-- Jacoco Code Coverage Engine to generate metrics for SonarQube -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.11</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
     <distributionManagement>
+        <!-- NOTE: Secure HTTPS channels are highly recommended to prevent Maven build blockers -->
         <repository>
             <id>maven-releases</id>
             <url>http://13.233.88.54:8081/repository/maven-releases/</url>
