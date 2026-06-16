@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://apache.org" xmlns:xsi="http://w3.org"
+    xsi:schemaLocation="http://apache.org https://apache.org">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -15,9 +15,7 @@
     <description>Banking Web Application</description>
 
     <properties>
-        <!-- Upgraded to match your Jenkins runtime server environment -->
         <java.version>21</java.version>
-        <!-- Standardized SonarQube properties for automated Maven execution -->
         <sonar.projectKey>multitier</sonar.projectKey>
         <sonar.projectName>multitier</sonar.projectName>
     </properties>
@@ -31,8 +29,9 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+        <!-- Corrected GroupId block -->
         <dependency>
-            <groupId>org.springframework.boot-starter-thymeleaf</groupId>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
@@ -68,13 +67,11 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <!-- SonarQube Maven Plugin for clean code analytics tracking -->
             <plugin>
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.10.0.2594</version>
             </plugin>
-            <!-- Jacoco Code Coverage Engine to generate metrics for SonarQube -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -98,14 +95,13 @@
     </build>
 
     <distributionManagement>
-        <!-- NOTE: Secure HTTPS channels are highly recommended to prevent Maven build blockers -->
         <repository>
             <id>maven-releases</id>
-            <url>http://13.233.88.54:8081/repository/maven-releases/</url>
+            <url>http://13.233.88</url>
         </repository>
         <snapshotRepository>
             <id>maven-snapshots</id>
-            <url>http://13.233.88.54:8081/repository/maven-snapshots/</url>
+            <url>http://13.233.88</url>
         </snapshotRepository>
     </distributionManagement>
 </project>
